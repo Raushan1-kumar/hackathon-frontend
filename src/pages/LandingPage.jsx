@@ -1,4 +1,7 @@
+import { Button } from "@/components/ui/button";
 import React from "react";
+import { MdEmergency } from 'react-icons/md';
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -9,17 +12,18 @@ function LandingPage() {
      
       <nav className="bg-white backdrop-blur-sm fixed w-full top-0 z-50 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-8">
+          <div className="flex bg-cover items-center gap-8">
             <img
-              src="https://ucarecdn.com/e8c2c5ac-2643-46b4-8b07-de38785c2eb3/-/format/auto/"
+              src="\Image\WhatsApp Image 2025-04-14 at 16.23.00_05ec6860.jpg"
+              
               alt="Vida Logo"
-              className="h-8"
+              className="h-10"
             />
             <div className="hidden md:flex gap-6">
-              <button className="text-navy-800 hover:text-blue-600">
+              <button className="text-navy-800 font-bold hover:text-blue-600">
                 Enterprise
               </button>
-              <button className="text-navy-800 hover:text-blue-600">
+              <button className="text-navy-800 font-bold hover:text-blue-600">
                 Individuals
               </button>
             </div>
@@ -27,16 +31,16 @@ function LandingPage() {
 
         
           <div className="hidden md:flex items-center gap-6">
-            <a href="#" className="text-navy-800 hover:text-blue-600">
-              Resources
-            </a>
-            <a href="#" className="text-navy-800 hover:text-blue-600">
-              About
-            </a>
-            <a href="#" className="text-navy-800 hover:text-blue-600">
+            <Link to="/input-medical" className="text-navy-800 font-bold hover:text-blue-600">
+              Add Medical Data
+            </Link>
+            <Link href="#" className="text-navy-800 font-bold hover:text-blue-600">
+              
+            </Link>
+            <Link href="#" className="text-navy-800 font-bold hover:text-blue-600">
               Login
-            </a>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">
+            </Link>
+            <button className="bg-blue-600 font-bold text-white px-4 py-2 rounded-full hover:bg-blue-700">
               Contact Sales
             </button>
           </div>
@@ -138,7 +142,14 @@ function LandingPage() {
           </div>
         </div>
       </div>
-
+       <div className="flex flex-col md:flex-row justify-center z-20 gap-4 md:gap-8 items-center">
+        <Button variant="destructive" className="border-2 rounded-2xl cursor-pointer p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white" >
+          <Link to="/emergency">Emergency Detail</Link>
+        </Button>
+        <Button variant="destructive" className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white">
+        <Link to="/records">Medical Records</Link>
+        </Button>
+       </div>
      
       <div className="py-16 px-4">
         <div className="max-w-7xl mx-auto text-center space-y-4">
