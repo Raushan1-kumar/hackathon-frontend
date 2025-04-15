@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Footer from "./Footer";
+
 import { HiClipboardCopy } from "react-icons/hi";
 
 function Share() {
@@ -231,7 +231,7 @@ function Share() {
           )}
         </div>
       </div>
-      <Footer/>
+     
     </div>
   );
 }

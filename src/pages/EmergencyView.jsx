@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Footer from "./Footer";
+import { IoMdArrowBack } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
+
 
 function EmergencyView() {
   const [loading, setLoading] = useState(true);
@@ -41,18 +43,37 @@ function EmergencyView() {
   }
 
   return (
-    <div className="min-h-screen  bg-white dark:bg-gray-900 p-4 md:p-8">
+    <div className="min-h-screen bg-white dark:bg-gray-900 p-4 md:p-8">
       <div className="max-w-3xl mx-auto">
-        <div className="flex items-center mb-8">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center">
+            <button
+              onClick={() => (window.location.href = "/")}
+              className="mr-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              <IoMdArrowBack className="text-2xl" />
+            </button>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-inter">
+              Emergency Information
+            </h1>
+          </div>
+          
+          {/* Desktop Edit Button */}
           <button
-            onClick={() => (window.location.href = "/")}
-            className="mr-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
+            onClick={() => (window.location.href = "/input-emergency")}
+            className="hidden md:flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
           >
-            <i className="fas fa-arrow-left text-xl"></i>
+            <MdEdit className="text-xl" />
+            <span>Edit Information</span>
           </button>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-inter">
-            Emergency Information
-          </h1>
+
+          {/* Mobile Edit Button */}
+          <button
+            onClick={() => (window.location.href = "/input-emergency")}
+            className="md:hidden p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+          >
+            <MdEdit className="text-xl" />
+          </button>
         </div>
 
         <div className="space-y-6">
@@ -137,7 +158,7 @@ function EmergencyView() {
                         href={`tel:${contact.phone}`}
                         className="mt-2 md:mt-0 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                       >
-                        <i className="fas fa-phone mr-2"></i>
+                        <IoMdArrowBack className="mr-2" />
                         <span className="font-inter">{contact.phone}</span>
                       </a>
                     </div>
@@ -148,7 +169,6 @@ function EmergencyView() {
           </div>
         </div>
       </div>
-      <Footer/>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
+import Header from "./Header";
 
 const MedicalRecordsPage = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,8 @@ const MedicalRecordsPage = () => {
   };
 
   return (
+    <>
+   <Header/>
     <div
       className="min-h-screen p-6 bg-cover bg-center text-white"
       style={{ backgroundImage: "url('/medical-records-bg.jpg')" }}
@@ -97,6 +100,7 @@ const MedicalRecordsPage = () => {
         </Tabs>
       </motion.div>
     </div>
+    </>
   );
 };
 
