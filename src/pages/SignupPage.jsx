@@ -1,9 +1,11 @@
+import axios from "../config/axios"
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    fullname: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -19,8 +21,34 @@ function SignupPage() {
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Add your signup logic here
-    setTimeout(() => setLoading(false), 1000);
+   try{
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      setLoading(false);
+      return;
+    }
+
+    const { confirmPassword, ...signupData } = formData;
+     await axios.post('/user/register',signupData).then((res)=>{
+       console.log(res.data);
+       toast.success("Registration successful!");
+       setLoading(false);
+       window.location.href = '/login'
+     }).catch((err)=>{
+       console.log(err);
+     })
+   }catch (error) {
+    console.error('Signup error:', error);
+    toast.error(error.response?.data?.message || "Registration failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
   };
 
   return (
@@ -42,10 +70,10 @@ function SignupPage() {
               </label>
               <input
                 id="name"
-                name="name"
+                name="fullname"
                 type="text"
                 required
-                value={formData.name}
+                value={formData.fullname}
                 onChange={handleChange}
                 className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm font-inter"
                 placeholder="Full Name"

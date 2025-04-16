@@ -1,11 +1,38 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
+import axios from "../config/axios"
 import { MdEdit } from "react-icons/md";
+import { toast } from 'sonner';
+import { Link } from "react-router-dom";
 
 
 function EmergencyView() {
   const [loading, setLoading] = useState(true);
+  const [emergencyDetail, setEmergencyDetail] = useState({});
+  const uuid=localStorage.getItem('emergencyUUID')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('hi');
+      console.log(uuid);
+      try {
+        const response = await axios.get(`/emergency/access-emergency-detail/${uuid}`).then((res)=>{
+          console.log(res.data);
+          if(res.data){
+            setEmergencyDetail(res.data.data);
+            console.log(emergencyDetail);
+          }
+        })
+      } catch (error) {
+        console.error('Error fetching emergency details:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, [uuid]);
 
   const emergencyInfo = {
     bloodType: "A+",
@@ -26,10 +53,7 @@ function EmergencyView() {
     ],
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+
 
   if (loading) {
     return (
@@ -81,7 +105,7 @@ function EmergencyView() {
             <div className="flex items-center mb-2">
               <i className="fas fa-droplet text-red-600 dark:text-red-400 mr-2"></i>
               <span className="text-xl font-bold text-red-600 dark:text-red-200 font-inter">
-                Blood Type: {emergencyInfo.bloodType}
+                Blood Type: {emergencyDetail?.bloodGroup}
               </span>
             </div>
           </div>
@@ -93,7 +117,7 @@ function EmergencyView() {
                   Allergies
                 </h2>
                 <div className="flex flex-wrap gap-2">
-                  {emergencyInfo.allergies.map((allergy) => (
+                  {emergencyDetail?.allergies.map((allergy) => (
                     <span
                       key={allergy}
                       className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full font-inter"
@@ -125,7 +149,7 @@ function EmergencyView() {
                   Current Medications
                 </h2>
                 <div className="flex flex-wrap gap-2">
-                  {emergencyInfo.medications.map((medication) => (
+                  {emergencyDetail?.medications.map((medication) => (
                     <span
                       key={medication}
                       className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full font-inter"
@@ -138,31 +162,51 @@ function EmergencyView() {
 
               <div>
                 <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white font-inter">
-                  Emergency Contacts
+                  Emergency Family Contacts
                 </h2>
                 <div className="space-y-3">
-                  {emergencyInfo.contacts.map((contact) => (
+                  {emergencyDetail?.emergencyContact&&
                     <div
-                      key={contact.name}
+                      key={emergencyDetail?.emergencyContact.name}
                       className="flex flex-col md:flex-row md:items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
                     >
                       <div>
                         <p className="font-bold text-gray-900 dark:text-white font-inter">
-                          {contact.name}
+                          {emergencyDetail?.emergencyContact.name}
                         </p>
                         <p className="text-gray-600 dark:text-gray-300 font-inter">
-                          {contact.relation}
+                          {emergencyDetail?.emergencyContact.relation}
                         </p>
                       </div>
-                      <a
-                        href={`tel:${contact.phone}`}
+                      <Link to=""
                         className="mt-2 md:mt-0 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                       >
                         <IoMdArrowBack className="mr-2" />
-                        <span className="font-inter">{contact.phone}</span>
-                      </a>
+                        <span className="font-inter">{emergencyDetail?.emergencyContact.phone}</span>
+                      </Link>
                     </div>
-                  ))}
+                  }
+                </div>
+                <div className="space-y-3">
+                <h2 className="text-xl font-bold mb-3 text-gray-900 dark:text-white font-inter">
+                  Emergency Doctor Contacts
+                </h2>
+                  {emergencyDetail?.doctorContact &&
+                    <div
+                      key={emergencyDetail?.doctorContact?.name}
+                      className="flex flex-col md:flex-row md:items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+                    >
+                      <div>
+                        <p className="font-bold text-gray-900 dark:text-white font-inter">
+                          {emergencyDetail?.doctorContact?.phone}
+                        </p>
+                        <p className="text-gray-600 dark:text-gray-300 font-inter">
+                          {emergencyDetail?.doctorContact?.hospital}
+                        </p>
+                      </div>
+            
+                    </div>
+                  }
                 </div>
               </div>
             </div>

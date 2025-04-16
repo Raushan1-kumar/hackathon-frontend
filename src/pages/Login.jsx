@@ -1,14 +1,25 @@
+import { useNavigate } from "react-router-dom";
+import axios from "../config/axios"
 import React, { useState } from "react";
 
 function Login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Add your login logic here
+   await axios.post('/user/login',{email, password}).then((res)=>{
+       console.log(res.data);
+       setLoading(false);
+       localStorage.setItem("token",res.data.token);
+       localStorage.setItem("user",JSON.stringify(res.data.user))
+       navigate('/');
+    }).catch(err=>{
+      console.log(err);
+    })
     setTimeout(() => setLoading(false), 1000);
   };
 

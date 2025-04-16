@@ -71,9 +71,9 @@ function InputEmergencyDetail() {
     e.preventDefault();
     setLoading(true);
     try {
-      const emergency_detail = await axios.post('/emergency/add-emergency-detail',formData).then((res)=>{
+      await axios.post('/emergency/add-emergency-detail',formData).then((res)=>{
         console.log(res.data);
-        console.log(emergency_detail);
+        localStorage.setItem('emergencyUUID',res.data.data.emergencyUUID);
       })
       .catch((error) => {
         console.error(error);

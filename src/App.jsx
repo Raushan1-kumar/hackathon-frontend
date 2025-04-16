@@ -13,7 +13,7 @@ import InputEmergencyDetail from "./pages/InputEmergencyDetail";
 import DocsPage from "./pages/DocsPage";
 import ProfilePage from "./pages/Profile";
 import SettingsPage from "./pages/Setting";
-
+import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 
 
@@ -26,17 +26,38 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/emergency" element={<EmergencyView/>}/>
-      <Route path="/input-detail" element={<InputHealthDetail/>}/>
-      <Route path="/add-emergency-detail" element={<InputEmergencyDetail/>}/>
-      <Route path="/share" element={<Share/>}/>
-      <Route path="/records" element={<Record/>}/>
+      <Route path="/input-detail" element={
+        <ProtectedRoutes>
+          <InputHealthDetail/>
+        </ProtectedRoutes>
+        }/>
+      <Route path="/add-emergency-detail" element={
+        <ProtectedRoutes>
+          <InputEmergencyDetail/>
+        </ProtectedRoutes>
+        }/>
+      <Route path="/share" element={
+        <ProtectedRoutes>
+          <Share/>
+        </ProtectedRoutes>
+        }/>
+      <Route path="/records" element={
+        <ProtectedRoutes>
+          <Record/>
+        </ProtectedRoutes>
+        }/>
       <Route path="/docs-page" element={<DocsPage/>}/>
-      <Route path="/profile-page" element={<ProfilePage/>}/>
-      <Route path="/setting" element={<SettingsPage/>}/>
-
-
+      <Route path="/profile-page" element={
+        <ProtectedRoutes>
+          <ProfilePage/>
+        </ProtectedRoutes>
+        }/>
+      <Route path="/setting" element={
+        <ProtectedRoutes>
+          <SettingsPage/>
+        </ProtectedRoutes>
+        }/>
     </Routes>
   </BrowserRouter>
   );
