@@ -1,16 +1,13 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { MdEmergency } from 'react-icons/md';
+import { MdEmergency } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 
 function LandingPage() {
- 
-
-
   return (
     <div className="min-h-screen  dark:bg-gray-900">
-    <Header/>
+      <Header />
       <div className="pt-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12 py-16">
@@ -44,15 +41,25 @@ function LandingPage() {
           </div>
         </div>
       </div>
-       <div className="flex flex-col md:flex-row justify-center z-20 gap-4 md:gap-8 items-center">
-        <Button variant="destructive" className="border-2 rounded-2xl cursor-pointer p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white" >
-          <Link to="/emergency">Emergency Detail</Link>
+      <div className="flex flex-col md:flex-row justify-center z-20 gap-4 md:gap-8 items-center flex-wrap">
+      <Link to="/emergency">
+       <Button
+          variant="destructive"
+          className="border-2 rounded-2xl cursor-pointer p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"
+        >
+          Emergency Detail
         </Button>
-        <Button variant="destructive" className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white">
-        <Link to="/records">Medical Records</Link>
+        </Link>
+        <Link to="/records">
+        <Button
+          variant="destructive"
+          className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"
+        >
+          Medical Records
         </Button>
-       </div>
-     
+        </Link>
+      </div>
+
       <div className="py-16 px-4">
         <div className="max-w-7xl mx-auto text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -65,6 +72,22 @@ function LandingPage() {
         </div>
       </div>
 
+      <div className="flex flex-col md:flex-row justify-center z-20 gap-4 md:gap-8 items-center flex-wrap">
+      <Link to="/blood-request/add">
+       <Button
+          variant="destructive"
+          className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"
+        >
+        Add Blood Request
+        </Button>
+        </Link>
+        <Button
+          variant="destructive"
+          className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"
+        >
+          <Link to="/blood-request/list">View Blood Requests</Link>
+        </Button>
+      </div>
 
       <div className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
@@ -78,9 +101,11 @@ function LandingPage() {
                 conditions, with programs tailored to address unique related
                 needs.
               </p>
+              <Link to="/docs-page">
               <button className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">
-               <Link to="/docs-page">Read Our Docs</Link>
+                 Read Our Docs
               </button>
+              </Link>
             </div>
             <div className="flex-1">
               <img

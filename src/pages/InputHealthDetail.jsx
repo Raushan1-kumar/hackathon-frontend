@@ -9,6 +9,14 @@ function InputHealthDetail() {
     gender: "",
     height: "",
     weight: "",
+    contactInfo: {
+      phone: "",
+      email: ""
+    },
+    emergencyContact: {
+      name: "",
+      phone: ""
+    },
     chronicConditions: [],
     pastSurgeries: [],
     medicalHistoryNotes: "",
