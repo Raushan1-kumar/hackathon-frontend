@@ -44,11 +44,16 @@ function Header() {
                      Home
                     </button>
                   </Link>
+                  <Link to="/emergency">
+                    <button className="text-navy-800 font-bold hover:text-blue-600">
+                     Emergency Detail
+                    </button>
+                  </Link>
                 </div>
               </div>
 
               <div className="hidden md:flex items-center gap-6">
-                <Link to="/medical-history-form" className="text-navy-800 font-bold hover:text-blue-600">
+                <Link to="/medical-history-view" className="text-navy-800 font-bold hover:text-blue-600">
                   Medical History
                 </Link>
                 
@@ -141,7 +146,12 @@ function Header() {
                       Home
                     </button>
                   </Link>
-                  <Link to="/input-detail" className="text-navy-800 font-bold hover:text-blue-600">
+                  <Link to="/emergency" className="text-navy-800 font-bold hover:text-blue-600">
+                    <button className="text-navy-800 hover:text-blue-600 text-left py-2">
+                      Emergency Detail
+                    </button>
+                  </Link>
+                  <Link to="/medical-history-view" className="text-navy-800 font-bold hover:text-blue-600">
                     Medical History
                   </Link>
                   
