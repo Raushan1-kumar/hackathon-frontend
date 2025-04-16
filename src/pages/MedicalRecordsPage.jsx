@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import Header from "./Header";
+import axios from "axios";
 
 const MedicalRecordsPage = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const MedicalRecordsPage = () => {
     doctor: "",
   });
 
+  
   const [records, setRecords] = useState({
     conditions: [],
     medications: [],

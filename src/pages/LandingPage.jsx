@@ -50,7 +50,7 @@ function LandingPage() {
           Emergency Detail
         </Button>
         </Link>
-        <Link to="/records">
+        <Link to="/medical-history-view">
         <Button
           variant="destructive"
           className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"

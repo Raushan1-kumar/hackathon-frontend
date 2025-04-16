@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { MdEdit, MdClose, MdAdd } from "react-icons/md";
 import Header from "./Header";
+import axios from "../config/axios"
 
 function Record() {
   const [loading, setLoading] = useState(true);
@@ -72,10 +73,23 @@ function Record() {
     ],
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+ useEffect(()=>{
+  setLoading(false)
+   const userId = localStorage.getItem('user');
+   const id = userId._id
+   console.log(userId);
+   console.log(id);
+   const fetchData = async()=>{
+     await axios.get('/medical/medical-info/access',{userId:id}).then((res)=>{
+        console.log(res.data);
+        setLoading(true)
+     }).catch((err)=>{
+        console.log(err);
+     })
+   }
+    fetchData();
+ 
+   },[])
 
   if (loading) {
     return (

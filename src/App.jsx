@@ -16,6 +16,8 @@ import ProtectedRoutes from "./pages/ProtectedRoutes";
 import BloodRequestForm from "./pages/BloodRequestForm";
 import BloodRequestsPage from "./pages/BloodRequestList";
 import InputLifestyleForm from "./pages/InputLifestyleDetail";
+import MedicalHistoryForm from "./pages/MedicalHistory";
+import MedicalHistoryView from "./pages/MedicalHistoryView";
 
 
 function App() {
@@ -94,6 +96,23 @@ function App() {
             </ProtectedRoutes>
           }
         />
+         <Route
+          path="/medical-history-form"
+          element={
+            <ProtectedRoutes>
+              <MedicalHistoryForm />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/medical-history-view"
+          element={
+            <ProtectedRoutes>
+              <MedicalHistoryView />
+            </ProtectedRoutes>
+          }
+        />
+
         <Route
           path="/input-lifeStyle-detail"
           element={

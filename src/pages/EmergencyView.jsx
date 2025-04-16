@@ -10,6 +10,9 @@ function EmergencyView() {
   const [loading, setLoading] = useState(true);
   const [emergencyDetail, setEmergencyDetail] = useState({});
   const [showQR, setShowQR] = useState(false);
+  const [showSecretKeyModal, setShowSecretKeyModal] = useState(false);
+  const [secretKey, setSecretKey] = useState("");
+  const [verifying, setVerifying] = useState(false);
   const uuid = localStorage.getItem("emergencyUUID");
 
   useEffect(() => {
@@ -49,6 +52,36 @@ function EmergencyView() {
     }
   };
 
+  const handleEdit = () => {
+    setShowSecretKeyModal(true);
+  };
+
+  const handleVerifySecretKey = async (e) => {
+    e.preventDefault();
+    setVerifying(true);
+
+    try {
+      const response = await axios.post('/emergency/verify-secret', {
+        uuid: uuid,
+        secretKey: secretKey
+      });
+
+      if (response.data.success) {
+        toast.success("Verification successful");
+        window.location.href = "/add-emergency-detail";
+      } else {
+        toast.error("Invalid secret key");
+      }
+    } catch (error) {
+      console.error("Verification error:", error);
+      toast.error(error.response?.data?.message || "Verification failed");
+    } finally {
+      setVerifying(false);
+      setSecretKey("");
+    }
+  };
+
+
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900 p-4 md:p-8">
@@ -87,7 +120,7 @@ function EmergencyView() {
             </button>
 
             <button
-              onClick={() => (window.location.href = "/input-emergency")}
+              onClick={() => {handleEdit()}}
               className="hidden md:flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
             >
               <MdEdit className="text-xl" />
@@ -217,6 +250,52 @@ function EmergencyView() {
           </div>
         </div>
 
+
+        {showSecretKeyModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg max-w-sm w-full">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                Enter Secret Key
+              </h3>
+              <button
+                onClick={() => {
+                  setShowSecretKeyModal(false);
+                  setSecretKey("");
+                }}
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                <IoMdArrowBack className="text-2xl" />
+              </button>
+            </div>
+        <form onSubmit={handleVerifySecretKey}>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  value={secretKey}
+                  onChange={(e) => setSecretKey(e.target.value)}
+                  placeholder="Enter your secret key"
+                  className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white 
+                    focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={verifying || !secretKey}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg
+                  disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              >
+                {verifying ? "Verifying..." : "Verify & Edit"}
+              </button>
+            </form>
+            <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-400">
+              Enter the secret key you received when creating this emergency information.
+            </p>
+          </div>
+        </div>
+      )}
         {/* QR Code Modal */}
         {showQR && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">

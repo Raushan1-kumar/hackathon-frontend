@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isFeatureDropdownOpen, setIsFeatureDropdownOpen] = useState(false);
-
+    const navigate = useNavigate();
     const features = [
       {
         name: "AI-Health Recommendation",
@@ -44,17 +44,12 @@ function Header() {
                      Home
                     </button>
                   </Link>
-                  <Link to="/add-emergency-detail">
-                    <button className="text-navy-800 font-bold hover:text-blue-600">
-                      Emergency Details
-                    </button>
-                  </Link>
                 </div>
               </div>
 
               <div className="hidden md:flex items-center gap-6">
-                <Link to="/input-detail" className="text-navy-800 font-bold hover:text-blue-600">
-                  Medical Data
+                <Link to="/medical-history-form" className="text-navy-800 font-bold hover:text-blue-600">
+                  Medical History
                 </Link>
                 
                 {/* Features Dropdown */}
@@ -95,9 +90,8 @@ function Header() {
                     </div>
                   )}
                 </div>
-
-                <button className="bg-blue-600 font-bold text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                  Contact Us
+                <button className="bg-blue-600 font-bold text-white px-4 py-2 rounded-full hover:bg-blue-700" >
+                <Link to="/login">Profile</Link>
                 </button>
               </div>
 
@@ -147,13 +141,8 @@ function Header() {
                       Home
                     </button>
                   </Link>
-                  <Link to="/add-emergency-detail" className="text-navy-800 font-bold hover:text-blue-600">
-                    <button className="text-navy-800 hover:text-blue-600 text-left py-2">
-                      Add Emergency Details
-                    </button>
-                  </Link>
                   <Link to="/input-detail" className="text-navy-800 font-bold hover:text-blue-600">
-                    Medical Data
+                    Medical History
                   </Link>
                   
                   {/* Mobile Features Dropdown */}
@@ -193,11 +182,8 @@ function Header() {
                   </div>
 
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 w-full">
-                    Contact Us
+                    profile
                   </button>
-                  <Link to="/profile-page" className="rounded-full cursor-pointer bg-green-200 w-10 h-10">
-                    <div className="w-12 h-12"></div>
-                  </Link>
                 </div>
               </div>
             )}
