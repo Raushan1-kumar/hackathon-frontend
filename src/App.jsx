@@ -18,6 +18,7 @@ import BloodRequestsPage from "./pages/BloodRequestList";
 import InputLifestyleForm from "./pages/InputLifestyleDetail";
 import MedicalHistoryForm from "./pages/MedicalHistory";
 import MedicalHistoryView from "./pages/MedicalHistoryView";
+import RiskManagementForm from "./pages/RiskMeasurementForm";
 
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
         />
         <Route path="/docs-page" element={<DocsPage />} />
         <Route
-          path="/profile-page"
+          path="/profile"
           element={
             <ProtectedRoutes>
               <ProfilePage />
@@ -78,7 +79,14 @@ function App() {
             </ProtectedRoutes>
           }
         />
-
+<Route
+          path="/risk-measurement"
+          element={
+            <ProtectedRoutes>
+              <RiskManagementForm />
+            </ProtectedRoutes>
+          }
+        />
         <Route
           path="/blood-request/list"
           element={

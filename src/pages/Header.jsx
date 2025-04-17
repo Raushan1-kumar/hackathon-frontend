@@ -18,7 +18,7 @@ function Header() {
       },
       {
         name: "Health Prediction",
-        path: "/emergency-access",
+        path: "/risk-measurement",
         description: "Quick access to emergency information"
       },
       {
@@ -96,7 +96,7 @@ function Header() {
                   )}
                 </div>
                 <button className="bg-blue-600 font-bold text-white px-4 py-2 rounded-full hover:bg-blue-700" >
-                <Link to="/login">Profile</Link>
+                <Link to="/profile">Profile</Link>
                 </button>
               </div>
 

@@ -11,7 +11,7 @@ const ProtectedRoutes = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user1 === null && token===null) {
+    if (user1 === null || token===null) {
       navigate('/login');
     }
     setIsLoading(false);

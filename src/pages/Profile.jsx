@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
-  const user = {
-    username: "john_doe",
-    email: "john@example.com",
-    profilePic:
-      "https://images.unsplash.com/photo-1603415526960-f7e0328b79d5?auto=format&fit=crop&w=200&q=80",
-  };
-
+  const emergencyuuid=localStorage.getItem('emergencyUUID')
+    const user = JSON.parse(localStorage.getItem('user'));
+    const navigate = useNavigate();
+    const handleLogout = () => {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      navigate('/login'); 
+    };
+    
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 to-green-300 dark:from-gray-900 dark:to-gray-800 p-4 sm:p-6 flex items-center justify-center">
       <motion.div
@@ -26,20 +29,26 @@ const ProfilePage = () => {
               alt="Profile"
               className="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg mb-4 sm:mb-6 border-4 border-green-500"
             />
-            <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-center">{user.username}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-center">{user.fullname}</h1>
             <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base text-center">{user.email}</p>
             <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
               <Button
                 className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-2 rounded-xl shadow-lg text-sm sm:text-base"
                 onClick={() => window.location.href = "/medical-records"}
               >
-                Medical Records
+                Medical History
               </Button>
               <Button
                 className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-4 sm:px-6 py-2 rounded-xl shadow-lg text-sm sm:text-base"
                 onClick={() => window.location.href = "/emergency"}
               >
-                Emergency Detail
+                  {emergencyuuid ? <h2>Emergency Detail</h2>: <h2>Add Emergency Detail</h2>}
+              </Button>
+              <Button
+                className="w-full sm:w-auto bg-gray-600 hover:bg-gray-700 text-white px-4 sm:px-6 py-2 rounded-xl shadow-lg text-sm sm:text-base"
+                onClick={handleLogout}
+              >
+                Logout
               </Button>
             </div>
           </div>

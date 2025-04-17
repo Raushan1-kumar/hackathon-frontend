@@ -1,10 +1,20 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { MdEmergency } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function LandingPage() {
+  const emergencyuuid=localStorage.getItem('emergencyUUID')
+  const navigate = useNavigate();
+  const handleEmegencyDetail=()=>{
+    if(emergencyuuid){
+      navigate('/emergency')
+    }
+    else{
+      navigate('/add-emergency-detail');
+    }
+  }
   return (
     <div className="min-h-screen  dark:bg-gray-900">
       <Header />
@@ -42,20 +52,21 @@ function LandingPage() {
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center z-20 gap-4 md:gap-8 items-center flex-wrap">
-      <Link to="/emergency">
+  
        <Button
           variant="destructive"
           className="border-2 rounded-2xl cursor-pointer p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"
+          onClick={()=>{handleEmegencyDetail();}}
         >
-          Emergency Detail
+          {emergencyuuid ? <h2>Emergency Detail</h2>: <h2>Add Emergency Detail</h2>}
         </Button>
-        </Link>
+        
         <Link to="/medical-history-view">
         <Button
           variant="destructive"
           className="border-2 cursor-pointer rounded-2xl p-8 w-72 text-2xl border-gray-300 hover:bg-gray-600 hover:text-white"
         >
-          Medical Records
+          Medical History
         </Button>
         </Link>
       </div>

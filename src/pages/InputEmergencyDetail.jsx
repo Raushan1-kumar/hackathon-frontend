@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 
 import axios from "../config/axios"
+import { useNavigate } from "react-router-dom";
 
 function InputEmergencyDetail() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -74,6 +76,7 @@ function InputEmergencyDetail() {
       await axios.post('/emergency/add-emergency-detail',formData).then((res)=>{
         console.log(res.data);
         localStorage.setItem('emergencyUUID',res.data.data.emergencyUUID);
+        navigate('/emergency')
       })
       .catch((error) => {
         console.error(error);

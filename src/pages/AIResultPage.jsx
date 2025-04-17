@@ -28,11 +28,12 @@ const AIResultPage = ({ aiData }) => {
   );
 
   return (
+    <>
     <div
       ref={containerRef}
-      className="overflow-hidden w-full bg-gray-100 dark:bg-gray-800 fixed bottom-0 left-0 z-50"
+      className="overflow-hidden mt-16 w-full bg-gray-100 dark:bg-gray-800 fixed bottom-0 left-0 z-50"
       style={{ height: "0px" }}
-    >
+      >
       {showContent && aiData && (
         <div className="p-6 max-w-3xl mx-auto mt-10 overflow-y-auto h-full">
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
@@ -45,6 +46,7 @@ const AIResultPage = ({ aiData }) => {
         </div>
       )}
     </div>
+      </>
   );
 };
 
