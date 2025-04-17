@@ -1,10 +1,11 @@
 import axios from "../config/axios"
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 function SignupPage() {
   const [loading, setLoading] = useState(false);
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -40,7 +41,7 @@ function SignupPage() {
        console.log(res.data);
        toast.success("Registration successful!");
        setLoading(false);
-       window.location.href = '/login'
+       navigate('/login');
      }).catch((err)=>{
        console.log(err);
      })
