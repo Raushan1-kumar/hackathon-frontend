@@ -34,13 +34,13 @@ const ProfilePage = () => {
             <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
               <Button
                 className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-2 rounded-xl shadow-lg text-sm sm:text-base"
-                onClick={() => window.location.href = "/medical-records"}
+                onClick={() => navigate("/medical-records")}
               >
                 Medical History
               </Button>
               <Button
                 className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-4 sm:px-6 py-2 rounded-xl shadow-lg text-sm sm:text-base"
-                onClick={() => window.location.href = "/emergency"}
+                onClick={() => navigate("/emergency")}
               >
                   {emergencyuuid ? <h2>Emergency Detail</h2>: <h2>Add Emergency Detail</h2>}
               </Button>

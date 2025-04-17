@@ -17,7 +17,7 @@ const ProtectedRoutes = ({ children }) => {
     setIsLoading(false);
   }, [user1, navigate]);
 
-  if (isLoading) return null; // or a loading spinner
+  if (isLoading) return null; 
 
   return <>{children}</>;
 };

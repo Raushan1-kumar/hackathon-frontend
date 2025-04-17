@@ -65,7 +65,7 @@ function Dashboard() {
           {menuOptions.map((option) => (
             <button
               key={option.title}
-              onClick={() => (window.location.href = option.path)}
+              onClick={() => (navigate(option.path))}
               className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-900 hover:text-white dark:hover:bg-gray-700 transition-colors duration-200 group"
             >
               <div className="flex flex-col items-center text-center space-y-4">
@@ -84,7 +84,7 @@ function Dashboard() {
           <div className="max-w-3xl mx-auto px-4">
             <div className="flex justify-between items-center py-3">
               <button
-                onClick={() => (window.location.href = "/")}
+                onClick={() => (navigate("/"))}
                 className="flex flex-col items-center space-y-1 w-16"
               >
                 <AiFillHome className="text-2xl text-gray-900 dark:text-white" />
@@ -94,7 +94,7 @@ function Dashboard() {
               </button>
 
               <button
-                onClick={() => (window.location.href = "/emergency")}
+                onClick={() => (navigate("/emergency") )}
                 className="flex flex-col items-center space-y-1 w-16"
               >
                 <MdEmergency className="text-2xl text-gray-900 dark:text-white" />
@@ -104,7 +104,7 @@ function Dashboard() {
               </button>
 
               <button
-                onClick={() => (window.location.href = "/records")}
+                onClick={() => (navigate("/records"))}
                 className="flex flex-col items-center space-y-1 w-16"
               >
                 <MdMedicalServices className="text-2xl text-gray-900 dark:text-white" />
@@ -114,7 +114,7 @@ function Dashboard() {
               </button>
 
               <button
-                onClick={() => (window.location.href = "/profile")}
+                onClick={() => (navigate("/profile"))}
                 className="flex flex-col items-center space-y-1 w-16"
               >
                 <CgProfile className="text-2xl text-gray-900 dark:text-white" />

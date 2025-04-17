@@ -5,6 +5,7 @@ import { MdEdit, MdQrCode2 } from "react-icons/md";
 import axios from "../config/axios";
 import { toast } from "sonner";
 import QRCode from "react-qr-code"; 
+import { Link, useNavigate } from "react-router-dom";
 
 function EmergencyView() {
   const [loading, setLoading] = useState(true);
@@ -14,6 +15,7 @@ function EmergencyView() {
   const [secretKey, setSecretKey] = useState("");
   const [verifying, setVerifying] = useState(false);
   const uuid = localStorage.getItem("emergencyUUID");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,7 +70,7 @@ function EmergencyView() {
 
       if (response.data.success) {
         toast.success("Verification successful");
-        window.location.href = "/add-emergency-detail";
+        navigate("/add-emergency-detail");
       } else {
         toast.error("Invalid secret key");
       }
@@ -99,7 +101,7 @@ function EmergencyView() {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center">
             <button
-              onClick={() => (window.location.href = "/")}
+              onClick={() => (navigate("/"))}
               className="mr-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
             >
               <IoMdArrowBack className="text-2xl" />
@@ -136,7 +138,7 @@ function EmergencyView() {
             </button>
 
             <button
-              onClick={() => (window.location.href = "/input-emergency")}
+              onClick={() => (navigate("/input-emergency"))}
               className="md:hidden p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
             >
               <MdEdit className="text-xl" />
@@ -207,14 +209,14 @@ function EmergencyView() {
                           {emergencyDetail.emergencyContact.relation}
                         </p>
                       </div>
-                      <a
-                        href={`tel:${emergencyDetail.emergencyContact.phone}`}
+                      <Link
+                        to={`tel:${emergencyDetail.emergencyContact.phone}`}
                         className="mt-2 md:mt-0 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                       >
                         <span className="font-inter">
                           {emergencyDetail.emergencyContact.phone}
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -234,14 +236,14 @@ function EmergencyView() {
                           {emergencyDetail.doctorContact.hospital}
                         </p>
                       </div>
-                      <a
-                        href={`tel:${emergencyDetail.doctorContact.phone}`}
+                      <Link
+                        to={`tel:${emergencyDetail.doctorContact.phone}`}
                         className="mt-2 md:mt-0 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                       >
                         <span className="font-inter">
                           {emergencyDetail.doctorContact.phone}
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>

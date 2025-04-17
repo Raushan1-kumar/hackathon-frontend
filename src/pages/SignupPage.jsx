@@ -1,5 +1,6 @@
 import axios from "../config/axios"
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 function SignupPage() {
@@ -143,12 +144,12 @@ function SignupPage() {
 
         <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400 font-inter">
           Already have an account?{" "}
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
           >
             Sign in
-          </a>
+          </Link>
         </p>
       </div>
     </div>

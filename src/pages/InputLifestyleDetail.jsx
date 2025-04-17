@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import axios from "../config/axios";
 import AIResultPage from "./AIResultPage";
+import { useNavigate } from "react-router-dom";
 
 const InputLifestyleForm = () => {
   const [loading, setLoading] = useState(false);
   const [isResponseGenerated, SetIsResponseGenerated] = useState(false);
   const [aiResponse, setAiResponse] = useState({})
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     age: "",
     gender: "",
@@ -53,7 +55,7 @@ const InputLifestyleForm = () => {
       <div className="max-w-3xl mx-auto text-gray-900 dark:text-white">
         <div className="flex items-center mb-8">
           <button
-            onClick={() => window.location.href = "/"}
+            onClick={() => navigate("/")}
             className="mr-4 hover:text-blue-600 dark:hover:text-blue-400"
           >
             <IoMdArrowBack className="text-2xl" />

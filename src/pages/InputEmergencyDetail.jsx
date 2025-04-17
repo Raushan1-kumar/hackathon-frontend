@@ -94,7 +94,7 @@ function InputEmergencyDetail() {
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center mb-8">
           <button
-            onClick={() => window.location.href = "/emergency"}
+            onClick={() => navigate("/emergency")}
             className="mr-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
           >
             <IoMdArrowBack className="text-2xl" />

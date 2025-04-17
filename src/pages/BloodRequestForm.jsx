@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import axios from "../config/axios";
+import { useNavigate } from "react-router-dom";
 
 function BloodRequestForm() {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ function BloodRequestForm() {
       [name]: value,
     }));
   };
+  const navigate = useNavigate();
 
   // const handleFileChange = (e) => {
   //   const file = e.target.files[0];
@@ -44,7 +46,7 @@ function BloodRequestForm() {
     try {
       const response = await axios.post("/blood/blood-request", formData);
       if (response.data.success) {
-        window.location.href = "/blood-request/list";
+        navigate("/blood-request/list");
       } else {
         alert("Submission failed. Please try again.");
       }
@@ -60,7 +62,7 @@ function BloodRequestForm() {
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center mb-8">
           <button
-            onClick={() => window.location.href = "/"}
+            onClick={() =>navigate("/")}
             className="mr-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
           >
             <IoMdArrowBack className="text-2xl" />
