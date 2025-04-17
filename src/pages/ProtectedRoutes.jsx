@@ -12,7 +12,7 @@ const ProtectedRoutes = ({ children }) => {
 
   useEffect(() => {
     if (user1 === null || token===null) {
-      navigate('/login');
+      navigate('/signup');
     }
     setIsLoading(false);
   }, [user1, navigate]);
