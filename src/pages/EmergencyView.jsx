@@ -138,7 +138,7 @@ function EmergencyView() {
             </button>
 
             <button
-              onClick={() => (navigate("/input-emergency"))}
+              onClick={() => {handleEdit()}}
               className="md:hidden p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
             >
               <MdEdit className="text-xl" />
@@ -315,7 +315,7 @@ function EmergencyView() {
               </div>
               <div className="flex justify-center bg-white p-4 rounded-lg">
                 <QRCode
-                  value={generateQRData()}
+                  value={`https://hackathon-frontend-0pii.onrender.com/emergency/access-emergency-detail/${uuid}`}
                   size={256}
                   style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                   viewBox={`0 0 256 256`}

@@ -125,7 +125,7 @@ const MedicalRecordForm = () => {
                     border-2 border-gray-300 dark:border-gray-600"
                   multiple
                 />
-              </div>
+              </div> 
               {formData?.documents && formData?.documents.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {formData.documents.map((file, index) => (

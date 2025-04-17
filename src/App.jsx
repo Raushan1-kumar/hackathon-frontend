@@ -19,6 +19,7 @@ import InputLifestyleForm from "./pages/InputLifestyleDetail";
 import MedicalHistoryForm from "./pages/MedicalHistory";
 import MedicalHistoryView from "./pages/MedicalHistoryView";
 import RiskManagementForm from "./pages/RiskMeasurementForm";
+import QRCode from "react-qr-code";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             </ProtectedRoutes>
           }
         />
+        <Route path="/emergency/access-emergency-detail/:uuid" element={<QRCode />} />
         <Route
           path="/add-emergency-detail"
           element={

@@ -58,7 +58,8 @@ export default function RiskManagementForm() {
     };
 
     try {
-      const res = await axios.post('http://192.168.126.208:5000/predict-risk', payload);
+      console.log(payload);
+      const res = await axios.post('https://health-prediction-backend-2.onrender.com/predict-risk', payload);
       if (res.data && res.data.risk_level) {
         setResult(res.data.risk_level);
       } else {

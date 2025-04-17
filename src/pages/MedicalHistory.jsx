@@ -1,5 +1,8 @@
 import axios from "../config/axios"
 import React, { useState } from 'react';
+import DocumentUploadPage from './DocumentUploadPage';
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 const MedicalHistoryForm = () => {
   const [formData, setFormData] = useState({
@@ -7,8 +10,9 @@ const MedicalHistoryForm = () => {
     medications: [{ name: '', dosage: '', frequency: '', purpose: '', prescribedBy: '' }],
     chronicConditions: [{ conditionName: '', diagnosisDate: '', treatment: '', status: 'Active' }],
     surgeries: [{ name: '', date: '', outcome: '', hospital: '', doctor: '' }],
-    vaccinations: [{ vaccineName: '', doseDate: '', boosterDate: '', notes: '' }]
+    vaccinations: [{ vaccineName: '', doseDate: '', boosterDate: '', notes: '' }],
   });
+  const [documents, setdocuments] = useState([])
 
   const handleChange = (section, index, field, value) => {
     const updatedSection = [...formData[section]];
@@ -148,8 +152,32 @@ const MedicalHistoryForm = () => {
               onChange={(e) => handleChange('vaccinations', idx, 'notes', e.target.value)}
               className="bg-zinc-800 text-white p-2 rounded" />
           </div>
+          
         ))}
       </div>
+
+      {/* document upload */}
+              <div className="space-y-2">
+              <Label>Medical Documents</Label>
+              <div className="flex items-center gap-4">
+                <Input
+                  type="file"
+                  name="documents"
+                  onChange={(e) => {
+                    const files = Array.from(e.target.files);
+                    setdocuments(prev => ({
+                      ...prev,
+                      documents: [...prev.documents, ...files]
+                    }));
+                  }}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium
+                    file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100
+                    border-2 border-gray-300 dark:border-gray-600"
+                  multiple
+                />
+              </div> 
+          </div>
 
       <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded mt-6">
         Save Medical History
